@@ -1,0 +1,60 @@
+using System;
+
+class Calculadora
+{
+    static void Main()
+    {
+        while (true)
+        {
+            Console.WriteLine("Calculadora en C#");
+            Console.WriteLine("Operaciones disponibles: +, -, *, /");
+            Console.Write("Ingrese la operación (+, -, *, /) o 'salir' para terminar: ");
+            string op = Console.ReadLine();
+            
+            if (op.ToLower() == "salir")
+            {
+                Console.WriteLine("Saliendo de la calculadora...");
+                break;
+            }
+            
+            try
+            {
+                Console.Write("Ingrese el primer número: ");
+                double num1 = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Ingrese el segundo número: ");
+                double num2 = Convert.ToDouble(Console.ReadLine());
+                double resultado = 0;
+
+                switch (op)
+                {
+                    case "+":
+                        resultado = num1 + num2;
+                        break;
+                    case "-":
+                        resultado = num1 - num2;
+                        break;
+                    case "*":
+                        resultado = num1 * num2;
+                        break;
+                    case "/":
+                        if (num2 == 0)
+                        {
+                            Console.WriteLine("Error: División por cero");
+                            continue;
+                        }
+                        resultado = num1 / num2;
+                        break;
+                    default:
+                        Console.WriteLine("Operación no válida. Intente nuevamente.");
+                        continue;
+                }
+                
+                Console.WriteLine("Resultado: " + resultado);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Error: Entrada no válida. Ingrese números válidos.");
+            }
+        }
+    }
+}
